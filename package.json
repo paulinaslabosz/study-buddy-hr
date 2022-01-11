@@ -15,14 +15,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pre-commit": "lint-staged"
+    "eject": "react-scripts eject"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json}": [
-      "prettier --write"
-    ]
-  },
+       "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+         "prettier --write"
+       ]
+     },
+  "husky": {
+        "hooks": {
+          "pre-commit": "lint-staged"
+        }
+      },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -39,7 +43,7 @@
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^4.3.8",
+    "husky": "^7.0.4",
     "lint-staged": "^12.1.7",
     "prettier": "^2.5.1"
   }
