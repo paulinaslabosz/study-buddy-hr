@@ -2,9 +2,7 @@ import logo from 'assets/logo.svg';
 import './App.css';
 
 
-
 console.log('hello');
-
 
 
 function App() {
@@ -27,7 +25,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;
