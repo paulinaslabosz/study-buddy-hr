@@ -10,17 +10,22 @@ const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
   border-radius: 10px;
-  margin: 0;
-  padding: 0;
+  
+  
 `;
+
+const StyledList = styled.ul`
+padding: 27px 24px 6px 44px;
+margin: 0;
+`
 
 const UserList = () => (
   <Wrapper>
-    <ul>
+    <StyledList>
       {users.map((userData) => (
         <UserListItem key={userData.name} userData={userData} />
       ))}
-    </ul>
+    </StyledList>
   </Wrapper>
 );
 

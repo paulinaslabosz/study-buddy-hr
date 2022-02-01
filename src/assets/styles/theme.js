@@ -7,6 +7,7 @@ export const theme = {
     yellow: '#E1D888',
     green: '#8FCB81',
     grey: '#737C8E',
+    lineGrey: '#DFE2E8',
     buttonGrey: '#C0C7D6',
   },
   fontSize: {
