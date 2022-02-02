@@ -1,5 +1,5 @@
 import React from 'react';
-import UserList from 'components/UserList/UserList';
+import UserList from 'components/organisms/UserList/UserList.js';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { Wrapper } from './Root.styles';
