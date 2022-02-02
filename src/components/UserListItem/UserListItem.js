@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
 import { ReactComponent as DeleteIcon } from 'assets/icons/cancel2.svg';
-const StyledListItem = styled.li`
-  width: 426px;
+
+const Wrapper = styled.li`
   display: flex;
-  margin: 33px 0 26px 0;
-  padding: 0;
   align-items: center;
   position: relative;
   &:not(:last-child)::after {
@@ -23,7 +21,11 @@ const StyledListItem = styled.li`
 const StyledAverage = styled.div`
   width: 34px;
   height: 34px;
-  background: ${({ theme }) => theme.colors.yellow};
+  background: ${({ theme, value }) => {
+    if (value > 4) return theme.colors.green;
+    if (value > 3) return theme.colors.yellow;
+    if (value > 2) return theme.colors.red;
+  }};
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -33,23 +35,30 @@ const StyledAverage = styled.div`
   font-weight: 700;
 `;
 const StyledUser = styled.div`
-  margin: 0 14px 0 24px;
+  padding: 25px 20px;
+
+  p {
+    margin: 0;
+    color: ${({ theme }) => theme.colors.grey};
+  }
+
+  p:first-child {
+    font-size: ${({ theme }) => theme.fontSize.l};
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  p:last-child {
+    font-size: ${({ theme }) => theme.fontSize.s};
+  }
 `;
-const StyledUserName = styled.p`
-  margin: 0;
-  color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSize.l};
-  font-weight: 700;
-`;
-const StyledAttendance = styled.p`
-  margin: 0 0 26px 0;
-  color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSize.s};
-`;
+
 const StyledButton = styled.button`
   width: 23px;
   height: 23px;
   border: none;
+  margin: 0 15px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.buttonGrey};
   display: flex;
@@ -62,16 +71,19 @@ const StyledButton = styled.button`
 `;
 
 const UserListItem = ({ userData: { name, attendance = '0%', average } }) => (
-  <StyledListItem>
-    <StyledAverage>{average}</StyledAverage>
+  <Wrapper>
+    <StyledAverage value={average}>{average}</StyledAverage>
     <StyledUser>
-      <StyledUserName>{name}</StyledUserName>
-      <StyledAttendance>attendance: {attendance}</StyledAttendance>
+      <p>
+        {name}
+        <StyledButton>
+          <DeleteIcon />
+        </StyledButton>
+      </p>
+
+      <p>attendance: {attendance}</p>
     </StyledUser>
-    <StyledButton>
-      <DeleteIcon />
-    </StyledButton>
-  </StyledListItem>
+  </Wrapper>
 );
 
 UserListItem.propTypes = {
